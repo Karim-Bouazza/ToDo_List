@@ -1,0 +1,129 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100px;
+}
+
+.sub-container {
+  width: 600px;
+  background: rgb(231, 230, 230);
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background: blue;
+  color: white;
+  position: relative;
+}
+
+.create {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: blue;
+  left: 15px;
+  background: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.click {
+  cursor: pointer;
+}
+
+.create p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+}
+
+.list-container {
+  padding: 20px;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  background: white;
+  padding: 10px 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+ul li p {
+  padding-top: 3px;
+  padding-left: 3px;
+  font-size: 12px;
+}
+
+.calender {
+  display: flex;
+  color: #777;
+}
+
+.li-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+  position: absolute;
+  right: 0;
+  width: 200px;
+  padding-right: 40px;
+  color: white;
+}
+
+.icon p {
+  width: 20px;
+}
+
+.icon p i {
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.icon .icon-1 i {
+  background-color: blueviolet;
+}
+
+.icon .icon-2 i {
+  background-color: green;
+}
+
+.icon .icon-3 i {
+  background-color: red;
+}
+
+.icon .icon-4 {
+  display: none;
+}
+
+.icon .icon-4 i {
+  background-color: darkmagenta;
+}
