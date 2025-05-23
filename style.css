@@ -5,125 +5,66 @@
 }
 
 body {
-  background: black;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 100px;
+  background: #020024;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
 }
 
-.sub-container {
-  width: 600px;
-  background: rgb(231, 230, 230);
+.division_container {
+  padding: 40px 30px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.header {
-  width: 100%;
-  text-align: center;
-  padding: 10px 0;
-  background: blue;
-  color: white;
-  position: relative;
-}
-
-.create {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: blue;
-  left: 15px;
-  background: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-.click {
+.box {
+  width: 350px;
+  background-color: white;
+  border-radius: 40px;
+  margin-bottom: 20px;
+  padding: 8px 25px;
   cursor: pointer;
 }
 
-.create p {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 22px;
+.box h3 {
+  font-size: 1.4rem;
 }
 
-.list-container {
-  padding: 20px;
-}
-
-ul {
-  list-style: none;
-}
-
-ul li {
-  background: white;
-  padding: 10px 5px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-ul li p {
-  padding-top: 3px;
-  padding-left: 3px;
-  font-size: 12px;
-}
-
-.calender {
-  display: flex;
+p {
   color: #777;
 }
 
-.li-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+.border {
+  border: 3px solid rgb(255, 8, 0);
 }
 
-.icon {
+.sayings {
   display: flex;
-  justify-content: space-between;
   flex: 1;
-  position: absolute;
-  right: 0;
-  width: 200px;
-  padding-right: 40px;
-  color: white;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(240, 240, 240);
+  margin-left: 50px;
+  padding-top: 25px;
 }
 
-.icon p {
-  width: 20px;
+.said {
+  width: 92%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  margin-bottom: 20px;
 }
 
-.icon p i {
-  font-size: 18px;
-  padding: 10px;
-  border-radius: 50%;
-}
-
-.icon .icon-1 i {
-  background-color: blueviolet;
-}
-
-.icon .icon-2 i {
-  background-color: green;
-}
-
-.icon .icon-3 i {
-  background-color: red;
-}
-
-.icon .icon-4 {
-  display: none;
-}
-
-.icon .icon-4 i {
-  background-color: darkmagenta;
+hr {
+  border-color: hsla(0, 0%, 47%, 0.5);
+  margin: 5px 0;
 }

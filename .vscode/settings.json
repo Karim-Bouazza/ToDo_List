@@ -1,0 +1,8 @@
+{
+    "git.autorefresh": false,
+    "git.blame.statusBarItem.enabled": false,
+    "git.confirmEmptyCommits": false,
+    "git.detectSubmodules": false,
+    "git.discardUntrackedChangesToTrash": false,
+    "git.enabled": false
+}

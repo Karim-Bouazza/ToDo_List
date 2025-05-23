@@ -1,117 +1,123 @@
-const create = document.getElementById("create");
-const ul = document.getElementById("ul");
+const authors = document.getElementById("authors");
+const says = document.getElementById("says");
 
-create.addEventListener("click", function () {
-  let ajouter = prompt("Enter the Task");
+let users = [
+  //   {
+  //    id: 1,
+  //     user: "Karim Bouazza",
+  //     email: "karim19215@gmail.com",
+  //     selected: false,
+  //   },
+  //   {
+  //     user: "Html Frontend",
+  //     email: "html@gmail.com",
+  //     selected: false,
+  //   },
+];
 
-  if (ajouter !== "") {
-    const li = document.createElement("li");
-    const div1 = createDev("li-container");
-    const div2 = createDev("right-container");
-    const div3 = createDev("calender");
-    const div4 = createDev("icon");
+let said = [
+  //   {
+  //     title: "usthb univeristy of student",
+  //     body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis vitae distinctio minima quidem ipsa accusantium in veniam, commodi quod.",
+  //   },
+  //   {
+  //     title: "usthb univeristy of student",
+  //     body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis vitae distinctio minima quidem ipsa accusantium in veniam, commodi quod.",
+  //   },
+  //   {
+  //     title: "usthb univeristy of student",
+  //     body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis vitae distinctio minima quidem ipsa accusantium in veniam, commodi quod.",
+  //   },
+  //   {
+  //     title: "usthb univeristy of student karim",
+  //     body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. At nobis vitae distinctio minima quidem ipsa accusantium in veniam, commodi quod.",
+  //   },
+];
 
-    const h3 = document.createElement("h3");
-    let text = document.createTextNode(ajouter);
-
-    const i1 = createI("ri-calendar-2-line");
-    const i2 = createI("ri-pencil-fill");
-    const i3 = createI("ri-check-fill");
-    const i4 = createI("ri-close-circle-fill");
-    const i5 = createI("ri-delete-bin-6-fill");
-
-    const p = document.createElement("p");
-    const p1 = createP("cercle icon-1 click");
-    const p2 = createP("cercle icon-2 click");
-    const p3 = createP("cercle icon-4 click");
-    const p4 = createP("cercle icon-3 click");
-
-    insert(p1, i2, div4);
-    insert(p2, i3, div4);
-    insert(p3, i4, div4);
-    insert(p4, i5, div4);
-
-    Update(p1, text);
-    changeColor(p2, p3, li);
-    Delete(p4, ul, li);
-
-    const textP = time();
-
-    p.appendChild(textP);
-    h3.appendChild(text);
-    div2.appendChild(h3);
-
-    div3.appendChild(i1);
-    div3.appendChild(p);
-
-    div2.appendChild(div3);
-    div1.appendChild(div2);
-    div1.appendChild(div4);
-
-    li.appendChild(div1);
-    ul.appendChild(li);
-  } else {
-    console.log("Enter task");
+function displayUsers() {
+  authors.innerHTML = "";
+  let index = 0;
+  for (x of users) {
+    let content = `
+    <div class="box ${
+      x.selected ? "border" : ""
+    }" onclick="displayBorder(${index}), getSaidId(${index + 1})">
+        <h3>${x.user}</h3> 
+        <p>${x.email}</p>
+        </div>
+        `;
+    authors.innerHTML += content;
+    index++;
   }
-});
-
-function changeColor(p1, p2, li) {
-  p1.addEventListener("click", function () {
-    li.style.background = "rgba(0, 255, 0, 1)";
-    p1.style.display = "none";
-    p2.style.display = "block";
-  });
-
-  p2.addEventListener("click", function () {
-    li.style.background = "white";
-    p2.style.display = "none";
-    p1.style.display = "block";
-  });
 }
 
-function Delete(p, ul, li) {
-  p.addEventListener("click", function () {
-    ul.removeChild(li);
-  });
+function displayContent() {
+  says.innerHTML = '';
+  for (x of said) {
+    let content = `
+      <div class="said">
+            <h3>${x.title}</h3>
+            <hr />
+            <p>${x.body}</p>
+          </div>
+    `;
+    says.innerHTML += content;
+  }
 }
 
-function Update(p, textM) {
-  p.addEventListener("click", function () {
-    const textModify = prompt("Modify Text");
-    if (textModify !== "") {
-      textM.textContent = textModify;
+function displayBorder(i) {
+  users[i].selected = !users[i].selected;
+  for (let j = 0; j < users.length; j++) {
+    if (j == i) {
+      continue;
     }
-  });
+    users[j].selected = false;
+  }
+  displayUsers();
 }
 
-function time() {
-  const date = new Date();
-  const time1 = date.getFullYear();
-  const time2 = date.getMonth() + 1;
-  const time3 = date.getDate();
-  const textP = document.createTextNode(`${time3}/${time2}/${time1}`);
-  return textP;
+function getAllUser() {
+  const request = new XMLHttpRequest();
+  request.open("GET", "https://jsonplaceholder.typicode.com/users");
+  request.responseType = "json";
+  request.send();
+  request.onload = function () {
+    let allUser = request.response;
+
+    for (x of allUser) {
+      let obj = {
+        user: x.name,
+        email: x.email,
+        selected: false,
+      };
+      users.push(obj);
+    }
+    displayUsers();
+  };
 }
 
-function insert(p, i, div) {
-  p.appendChild(i);
-  div.appendChild(p);
+function getSaidId(userId) {
+  said = [];
+  const request = new XMLHttpRequest();
+  request.open(
+    "GET",
+    `https://jsonplaceholder.typicode.com/users/${userId}/posts`
+  );
+  request.send();
+  request.responseType = "json";
+  request.onload = function () {
+    let allSaid = request.response;
+    console.log(said);
+    for (x of allSaid) {
+      let obj = {
+        title: x.title,
+        body: x.body,
+      };
+      said.push(obj);
+    }
+    console.log(said);
+    displayContent();
+  };
 }
-
-function createP(text) {
-  var pp = document.createElement("p");
-  pp.setAttribute("class", text);
-  return pp;
-}
-
-function createI(text) {
-  var i = document.createElement("i");
-  i.setAttribute("class", text);
-  return i;
-}
-
-function createDev(text) {
-  const div = document.createElement("div");
-  div.setAttribute("class", text);
-  return div;
-}
+getAllUser();
+displayContent();
